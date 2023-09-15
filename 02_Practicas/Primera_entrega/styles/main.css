@@ -63,7 +63,7 @@ nav ul li:hover {
 
 /* ==== HEADER STYLES ==== */
 
-header {
+.header {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -74,21 +74,21 @@ header {
   color: var(--brown);
 }
 
-header .left,
-header .right {
+.header .left,
+.header .right {
   flex: 1;
   text-align: center;
 }
 
-header .left h1 {
+.header .left h1 {
   font-size: 4rem;
 }
 
-header .left p {
+.header .left p {
   font-size: 1.4rem;
 }
 
-header .right img {
+.header .right img {
   width: auto;
   filter: drop-shadow(5px 5px 5px #d855555d);
   max-height: 90vh;
@@ -125,12 +125,71 @@ header .right img {
   border-radius: 0.2rem;
 }
 
-.formFilter .btn {
+/* ==== CARD STYLES ==== */
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  border: 2px solid var(--white);
+  background-color: var(--white);
+  color: var(--black);
+  gap: 0.5rem;
+}
+
+.cardHeader .card-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.cardMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.cardMain .card-title {
+  font-weight: 400;
+}
+
+.cardMain .card-price {
+  background-color: var(--salmon);
+  font-size: 1.2rem;
+  color: var(--white);
+  padding: 0.5rem;
+}
+
+.cardFooter {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardFooter .card-tipo {
+  font-size: 0.8rem;
+  color: var(--white);
+  background-color: var(--black);
+  padding: 0.2rem 0.5rem;
+}
+
+.cardFooter .nuevoPedido img {
+  text-align: center;
+  width: 1.2rem;
 }
 
 /* ==== FOOTER STYLES ==== */
 
-footer {
+.footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -138,23 +197,23 @@ footer {
   padding: 2rem;
 }
 
-footer h2 {
+.footer h2 {
   font-size: 2rem;
   color: var(--orange);
 }
 
-footer .integrante {
+.footer .integrante {
   display: flex;
   align-items: center;
   color: var(--white);
   gap: 1rem;
 }
 
-footer .integrante span {
+.footer .integrante span {
   font-weight: 700;
 }
 
-footer .integrante .icon_chef {
+.footer .integrante .icon_chef {
   width: 2rem;
 }
 
