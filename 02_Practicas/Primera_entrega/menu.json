@@ -1,0 +1,122 @@
+[
+  {
+    "nombre": "Asado",
+    "img_url": "https",
+    "precio": "3500",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Empanadas",
+    "img_url": "https",
+    "precio": "1200",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Milanesa",
+    "img_url": "https",
+    "precio": "2000",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Provoleta",
+    "img_url": "https",
+    "precio": "1800",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Matambre",
+    "img_url": "https",
+    "precio": "2400",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Locro",
+    "img_url": "https",
+    "precio": "1500",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Choripán",
+    "img_url": "https",
+    "precio": "1000",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Pastel de Papa",
+    "img_url": "https",
+    "precio": "1700",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Ñoquis",
+    "img_url": "https",
+    "precio": "1300",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Tarta de Manzana",
+    "img_url": "https",
+    "precio": "1600",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Facturas",
+    "img_url": "https",
+    "precio": "800",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Medialunas",
+    "img_url": "https",
+    "precio": "1200",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Pizza",
+    "img_url": "https",
+    "precio": "2000",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Helado",
+    "img_url": "https",
+    "precio": "800",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Alfajores",
+    "img_url": "https",
+    "precio": "1000",
+    "tipo": "Comida"
+  },
+  {
+    "nombre": "Vino Malbec",
+    "img_url": "https",
+    "precio": "2500",
+    "tipo": "Bebida"
+  },
+  {
+    "nombre": "Fernet",
+    "img_url": "https",
+    "precio": "3000",
+    "tipo": "Bebida"
+  },
+  {
+    "nombre": "Mate",
+    "img_url": "https",
+    "precio": "1500",
+    "tipo": "Bebida"
+  },
+  {
+    "nombre": "Quilmes",
+    "img_url": "https",
+    "precio": "1000",
+    "tipo": "Bebida"
+  },
+  {
+    "nombre": "Coca-Cola",
+    "img_url": "https",
+    "precio": "1200",
+    "tipo": "Bebida"
+  }
+]
