@@ -1,0 +1,92 @@
+INSERT INTO items_menu(nombre, foto, precio, tipo)
+VALUES(
+    'Asado',
+    'https://images.unsplash.com/photo-1608877907149-a206d75ba011?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80',
+    3500,
+    'Comida'
+),(
+    'Empanadas',
+    'https://images.unsplash.com/photo-1619926096619-5956ab4dfb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    1200,
+    'Comida'
+),(
+    'Milanesa',
+    'https://images.unsplash.com/photo-1613744026806-e49474a748f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    2000,
+    'Comida'
+),(
+    'Provoleta',
+    'https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1675&q=80',
+    1800,
+    'Comida'
+),(
+    'Matambre',
+    'https://images.unsplash.com/photo-1582385456790-daf3fa701401?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    2400,
+    'Comida'
+),(
+    'Locro',
+    'https://images.unsplash.com/photo-1591386767153-987783380885?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+    1500,
+    'Comida'
+),(
+    'Choripán',
+    'https://images.unsplash.com/photo-1600797828610-468bb21b6f8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    1000,
+    'Comida'
+),(
+    'Pastel de Papa',
+    'https://www.cronica.com.ar/__export/1629493128065/sites/cronica/img/2021/08/20/pass_1_crop1629492905083.jpg_1833193316.jpg',
+    1700,
+    'Comida'
+),(
+    'Ñoquis',
+    'https://images.unsplash.com/photo-1586779245509-5f429311242f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+    1300,
+    'Comida'
+),(
+    'Tarta de Manzana',
+    'https://images.unsplash.com/photo-1562007908-17c67e878c88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    1600,
+    'Comida'
+),(
+    'Facturas',
+    'https://images.unsplash.com/photo-1530610476181-d83430b64dcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80',
+    800,
+    'Comida'
+),(
+    'Pizza',
+    'https://plus.unsplash.com/premium_photo-1673439304183-8840bd0dc1bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    2000,
+    'Comida'
+),(
+    'Helado',
+    'https://images.unsplash.com/photo-1576506295286-5cda18df43e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80',
+    800,
+    'Comida'
+),(
+    'Alfajores',
+    'https://i.blogs.es/bd269b/istock-1362943860/1366_2000.jpg',
+    1000,
+    'Comida'
+),(
+    'Vino Malbec',
+    'https://images.unsplash.com/photo-1655979281323-a72e7b04060a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1805&q=80',
+    2500,
+    'Bebida'
+),(
+    'Fernet',
+    'https://media.minutouno.com/p/49bd6e465d8387668a0e1f417029a2ca/adjuntos/150/imagenes/040/431/0040431581/consejo-coca-gas-fernet.jpg',
+    3000,
+    'Bebida'
+),(
+    'Quilmes',
+    'https://ardiaprod.vtexassets.com/arquivos/ids/257093-800-auto?v=638255446932530000&width=800&height=auto&aspect=true',
+    1000,
+    'Bebida'
+),(
+    'Coca-Cola',
+    'https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    1200,
+    'Bebida'
+);

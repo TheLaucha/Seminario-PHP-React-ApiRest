@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UNLP - Food</title>
+    <title>Pedidos realizados</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,39 +29,7 @@
         </li>
       </ul>
     </nav>
-    <header class="header">
-      <div class="left">
-        <h1>Ordena comida las veces que quieras!</h1>
-        <p>Chee! nuestro chefs estan listos para recibir tu pedido, mandale cumbia.</p>
-      </div>
-      <div class="right">
-        <img src="./assets/food_plate-removebg-preview.png" alt="plato de comida" />
-      </div>
-    </header>
     <section class="container" id="foodList">
-      <form class="formFilter" action="">
-        <div class="formItem">
-          <label for="nombre">Nombre: </label>
-          <input type="text" name="nombre" placeholder="Milanesas" />
-        </div>
-        <div class="formItem">
-          <label for="tipo">Tipo: </label>
-          <select name="tipo" id="tipo">
-            <option value="comida">Comida</option>
-            <option value="bebida">Bebida</option>
-          </select>
-        </div>
-        <div class="formItem">
-          <label for="orderByPrecio">Ordenar por precio</label>
-          <select name="orderByPrecio" id="orderByPrecio">
-            <option value="asc">Ascendente</option>
-            <option value="des">Descendente</option>
-          </select>
-        </div>
-        <div class="formItem">
-          <button type="submit" class="btn">Filtrar</button>
-        </div>
-      </form>
       <div class="cardContainer">
         <div class="card">
           <header class="cardHeader">
