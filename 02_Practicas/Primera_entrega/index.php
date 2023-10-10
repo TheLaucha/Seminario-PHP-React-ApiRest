@@ -1,4 +1,5 @@
 <?php include "conexionBD.php";
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +17,16 @@
 </head>
 
 <body>
+  <?php
+  if (isset($_SESSION["nuevo_pedido"])) {
+    echo "<div class='container nuevo_pedido'>";
+    echo "<p>";
+    echo $_SESSION["nuevo_pedido"];
+    echo "</p>";
+    echo "</div>";
+  }
+  ?>
+  <?php include "navbar.php" ?>
   <?php include "header.php" ?>
   <section class="container" id="foodList">
     <form class="formFilter" action="index.php#foodList" method="POST">
@@ -136,6 +147,9 @@
     </div> -->
   </section>
   <?php include "footer.php" ?>
+  <?php
+  unset($_SESSION['nuevo_pedido']);
+  ?>
 </body>
 
 </html>

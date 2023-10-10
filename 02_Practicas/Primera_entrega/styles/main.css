@@ -41,6 +41,12 @@ textarea {
   border: none;
 }
 
+.nuevo_pedido {
+  background-color: var(--green);
+  color: black;
+  font-weight: 300;
+}
+
 /* ==== NAVBAR STYLES ==== */
 
 nav {
@@ -185,6 +191,7 @@ nav ul li:hover {
   background-color: var(--white);
   color: var(--black);
   gap: 0.5rem;
+  max-width: 300px;
 }
 
 .cardHeader .card-image {
@@ -216,6 +223,11 @@ nav ul li:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.cardFooter.flex-col {
+  flex-direction: column;
+  
 }
 
 .cardFooter .card-tipo {

@@ -1,28 +1,34 @@
-function validarFormulario() {
+const form = document.querySelector("#formPedido")
+
+form.addEventListener("submit", validarFormulario)
+
+function validarFormulario(e) {
   let itemMenu = document.querySelector("#item_select")
   let mesa = document.querySelector("#mesa_select")
+  let itemMenuError = document.querySelector("#item_menu_error")
+  let nroMesaError = document.querySelector("#nromesa_error")
 
-  let itemMenuValido = itemMenu.value !== ""
-  let itemMesaValido = mesa.value !== ""
+  let errores = false
 
-  console.log(itemMenu.value)
-  console.log(mesa.value)
-
-  if (!itemMenuValido) {
+  if (itemMenu.value == "") {
     itemMenu.classList.add("campoInvalido")
+    itemMenuError.textContent = "El campo item del menu no puede estar vacio"
+    errores = true
   } else {
     itemMenu.classList.remove("campoInvalido")
+    itemMenuError.textContent = ""
   }
 
-  if (!itemMesaValido) {
+  if (mesa.value == "") {
     mesa.classList.add("campoInvalido")
+    nroMesaError.textContent = "El campo nro de mesa no puede estar vacio"
+    errores = true
   } else {
-    mesa.classList.add("campoInvalido")
+    mesa.classList.remove("campoInvalido")
+    nroMesaError.textContent = ""
   }
 
-  if (!itemMenuValido || !itemMesaValido) {
-    return false // Detiene el envio del formulario
+  if (errores) {
+    e.preventDefault()
   }
-
-  return true
 }
