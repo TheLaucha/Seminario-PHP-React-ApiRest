@@ -4,13 +4,19 @@
   </div>
   <ul>
     <li>
-      <a href="#">Inicio</a>
+      <a href="index.php">Inicio</a>
     </li>
     <li>
-      <a href="#">Menu</a>
+      <a href="index.php#foodList">Menu</a>
     </li>
     <li>
-      <a href="#">Sobre nosotros</a>
+      <a href="#footer">Sobre nosotros</a>
+    </li>
+    <li>
+      <a href="pedidosrealizados.php">Pedidos realizados</a>
+    </li>
+    <li>
+      <a href="altapedido.php">Nuevo Pedido</a>
     </li>
   </ul>
 </nav>

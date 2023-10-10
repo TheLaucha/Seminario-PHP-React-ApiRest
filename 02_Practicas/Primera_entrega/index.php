@@ -29,7 +29,7 @@ session_start();
   <?php include "navbar.php" ?>
   <?php include "header.php" ?>
   <section class="container" id="foodList">
-    <form class="formFilter" action="index.php#foodList" method="POST">
+    <form class="formFilter" action="index.php#foodList" method="GET">
       <div class="formItem">
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" placeholder="Milanesas" />
@@ -37,6 +37,7 @@ session_start();
       <div class="formItem">
         <label for="tipo">Tipo: </label>
         <select name="tipo" id="tipo">
+          <option value="">---</option>
           <option value="COMIDA">Comida</option>
           <option value="BEBIDA">Bebida</option>
         </select>
@@ -44,6 +45,7 @@ session_start();
       <div class="formItem">
         <label for="orderByPrecio">Ordenar por precio</label>
         <select name="orderByPrecio" id="orderByPrecio">
+          <option value="">---</option>
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
@@ -56,9 +58,9 @@ session_start();
       <?php
 
       // CONSTRUYO LA CONSULTA SQL
-      $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-      $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
-      $orden = isset($_POST['orderByPrecio']) ? $_POST['orderByPrecio'] : '';
+      $nombre = isset($_GET['nombre']) ? $_GET['nombre'] : '';
+      $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
+      $orden = isset($_GET['orderByPrecio']) ? $_GET['orderByPrecio'] : '';
 
       $sql = "SELECT * FROM items_menu WHERE 1";
       if (!empty($nombre)) {
@@ -73,78 +75,42 @@ session_start();
 
       // CONSULTO Y CONSTRUYO EL MENU
       $sel = $con->query($sql);
-      while ($fila = $sel->fetch_assoc()) {
-        $nombre = $fila['nombre'];
-        $foto = $fila['foto'];
-        $tipo = $fila['tipo'];
-        $precio = $fila['precio'];
 
-        echo '<div class="card">';
-        echo '<header class="cardHeader">';
-        echo '<img class="card-image" src="' . $foto . '"alt="" />';
-        echo '</header>';
-        echo '<main class="cardMain">';
-        echo '<h3 class="card-title">' . $nombre . '</h3>';
-        echo '<span class="card-price">$' . $precio . '</span>';
-        echo '</main>';
-        echo '<footer class="cardFooter">';
-        echo '<span class="card-tipo">' . $tipo . '</span>';
-        echo '<button class="btn nuevoPedido">';
-        echo '<img src="./assets/cart.svg" alt="buy cart icon" />';
-        echo '</button>';
-        echo '</footer>';
-        echo '</div>';
+      if ($sel->num_rows > 0) {
+        while ($fila = $sel->fetch_assoc()) {
+          $nombre = $fila['nombre'];
+          $foto = $fila['foto'];
+          $tipo = $fila['tipo'];
+          $precio = $fila['precio'];
+
+          echo '<div class="card">';
+          echo '<header class="cardHeader">';
+          echo '<img class="card-image" src="' . $foto . '"alt="" />';
+          echo '</header>';
+          echo '<main class="cardMain">';
+          echo '<h3 class="card-title">' . $nombre . '</h3>';
+          echo '<span class="card-price">$' . $precio . '</span>';
+          echo '</main>';
+          echo '<footer class="cardFooter">';
+          echo '<span class="card-tipo">' . $tipo . '</span>';
+          echo '<button class="btn nuevoPedido">';
+          echo '<img src="./assets/cart.svg" alt="buy cart icon" />';
+          echo '</button>';
+          echo '</footer>';
+          echo '</div>';
+        }
+      } else {
+        echo "<div class='container'>";
+        echo "<p>";
+        echo "No se encontraron platos con esas caracteristicas...";
+        echo "</p>";
+        echo "</div>";
       }
       ?>
+
     </div>
 
-    <!-- <div class="cardContainer">
-      <div class="card">
-        <header class="cardHeader">
-          <img class="card-image" src="./assets/vacio.jpg" alt="" />
-        </header>
-        <main class="cardMain">
-          <h3 class="card-title">Vacio</h3>
-          <span class="card-price">$20</span>
-        </main>
-        <footer class="cardFooter">
-          <span class="card-tipo">Comida</span>
-          <button class="btn nuevoPedido">
-            <img src="./assets/cart.svg" alt="buy cart icon" />
-          </button>
-        </footer>
-      </div>
-      <div class="card">
-        <header class="cardHeader">
-          <img class="card-image" src="./assets/vacio.jpg" alt="" />
-        </header>
-        <main class="cardMain">
-          <h3 class="card-title">Vacio</h3>
-          <span class="card-price">$20</span>
-        </main>
-        <footer class="cardFooter">
-          <span class="card-tipo">Comida</span>
-          <button class="btn nuevoPedido">
-            <img src="./assets/cart.svg" alt="buy cart icon" />
-          </button>
-        </footer>
-      </div>
-      <div class="card">
-        <header class="cardHeader">
-          <img class="card-image" src="./assets/vacio.jpg" alt="" />
-        </header>
-        <main class="cardMain">
-          <h3 class="card-title">Vacio</h3>
-          <span class="card-price">$20</span>
-        </main>
-        <footer class="cardFooter">
-          <span class="card-tipo">Comida</span>
-          <button class="btn nuevoPedido">
-            <img src="./assets/cart.svg" alt="buy cart icon" />
-          </button>
-        </footer>
-      </div>
-    </div> -->
+
   </section>
   <?php include "footer.php" ?>
   <?php

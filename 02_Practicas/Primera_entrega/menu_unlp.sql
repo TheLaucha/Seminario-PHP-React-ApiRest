@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2023 a las 02:52:20
+-- Tiempo de generación: 10-10-2023 a las 20:46:26
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -69,8 +69,18 @@ CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL,
   `idItemMenu` int(11) NOT NULL,
   `nromesa` int(11) NOT NULL,
-  `comentarios` longtext DEFAULT NULL
+  `comentarios` longtext DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `idItemMenu`, `nromesa`, `comentarios`, `created_at`) VALUES
+(1, 56, 2, ' Rapidito', '2023-10-10 18:42:44'),
+(2, 64, 2, ' ', '2023-10-10 18:45:43'),
+(3, 56, 3, ' ', '2023-10-10 18:45:53');
 
 --
 -- Índices para tablas volcadas
@@ -98,6 +108,12 @@ ALTER TABLE `pedidos`
 --
 ALTER TABLE `items_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
+-- AUTO_INCREMENT de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
