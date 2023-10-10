@@ -77,8 +77,6 @@ session_start(); ?>
     </form>
   </section>
 
-
-
   <?php
   unset($_SESSION['error_item_menu']);
   unset($_SESSION['error_nromesa']);

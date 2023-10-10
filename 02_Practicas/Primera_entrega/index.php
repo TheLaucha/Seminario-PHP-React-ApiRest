@@ -78,6 +78,7 @@ session_start();
 
       if ($sel->num_rows > 0) {
         while ($fila = $sel->fetch_assoc()) {
+          $id = $fila['id'];
           $nombre = $fila['nombre'];
           $foto = $fila['foto'];
           $tipo = $fila['tipo'];
@@ -85,7 +86,7 @@ session_start();
 
           echo '<div class="card">';
           echo '<header class="cardHeader">';
-          echo '<img class="card-image" src="' . $foto . '"alt="" />';
+          echo '<img class="card-image" src="mostrarImagen.php?idItem=' . $id . '" alt="" />';
           echo '</header>';
           echo '<main class="cardMain">';
           echo '<h3 class="card-title">' . $nombre . '</h3>';
