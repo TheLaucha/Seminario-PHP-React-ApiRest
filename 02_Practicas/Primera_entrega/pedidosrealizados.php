@@ -20,7 +20,7 @@
     <div class="cardContainer">
       <?php
 
-      $sql = "SELECT * FROM pedidos ORDER BY created_at DESC";
+      $sql = "SELECT * FROM pedidos ORDER BY fechaAlta DESC";
       $pedidos = $con->query($sql);
       // CONSULTO Y CONSTRUYO EL MENU
       if ($pedidos->num_rows > 0) {
@@ -32,7 +32,7 @@
           if ($dataItemMenu->num_rows > 0) {
             $itemMenu = $dataItemMenu->fetch_assoc();
             $nombre = $itemMenu['nombre'];
-            $foto = $itemMenu['foto'];
+            $id = $itemMenu['id'];
             $tipo = $itemMenu['tipo'];
             $precio = $itemMenu['precio'];
             $comentarios = $fila["comentarios"];
@@ -40,7 +40,7 @@
 
             echo '<div class="card">';
             echo '<header class="cardHeader">';
-            echo "<img class='card-image' src='$foto' alt='' />";
+            echo '<img class="card-image" src="mostrarImagen.php?idItem=' . $id . '" alt="" />';
             echo '</header>';
             echo '<main class="cardMain">';
             echo "<h3 class='card-title'>";

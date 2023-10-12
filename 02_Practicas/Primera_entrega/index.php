@@ -94,9 +94,11 @@ session_start();
           echo '</main>';
           echo '<footer class="cardFooter">';
           echo '<span class="card-tipo">' . $tipo . '</span>';
+          echo '<a href="/altapedido.php">';
           echo '<button class="btn nuevoPedido">';
           echo '<img src="./assets/cart.svg" alt="buy cart icon" />';
           echo '</button>';
+          echo '</a>';
           echo '</footer>';
           echo '</div>';
         }
