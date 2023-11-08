@@ -11,19 +11,15 @@ require 'src/Models/Db.php';
 $app = AppFactory::create();
 $app->addBodyParsingMiddleware();
 
-// Conexion a la base de datos.
-$db = new Db('localhost', 'menu_unlp_2', 'root', '');
-$pdo = $db->getPDO();
-
 $app->get('/', function (Request $request, Response $response, $args) {
-  $response->getBody()->write("Hello world GG!");
+  $response->getBody()->write("Hello world!");
   return $response;
 });
 
 // ITEMS
 $app->post("/items", function (Request $req, Response $res, $args) {
   $newItem = $req->getParsedBody();
-  $query = "INSERT INTO items_menu (nombre,precio,tipo,imagen) VALUES (:nombre, :precio, :tipo, :imagen)";
+  $query = "INSERT INTO items_menu (nombre,precio,tipo,imagen,tipo_imagen) VALUES (:nombre, :precio, :tipo, :imagen, :tipo_imagen)";
   $error = array();
 
   if (!isset($newItem["nombre"])) {
@@ -34,14 +30,22 @@ $app->post("/items", function (Request $req, Response $res, $args) {
   }
   if (!isset($newItem["tipo"])) {
     $error[] = "El campo 'tipo' es obligatorio.";
+  } else {
+    $strUpperCase = strtoupper($newItem["tipo"]);
+    if ($strUpperCase !== "COMIDA" && $strUpperCase !== "BEBIDA") {
+      $error[] = "El campo 'tipo' debe ser COMIDA o BEBIDA";
+    }
   }
   if (!isset($newItem["imagen"])) {
     $error[] = "El campo 'imagen' es obligatorio.";
   }
+  if (!isset($newItem["tipo_imagen"])) {
+    $error[] = "El campo 'tipo_imagen' es obligatorio.";
+  }
 
   if (empty($error)) {
     try {
-      $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+      $db = new Db();
       $pdo = $db->getPDO();
 
       $data = $pdo->prepare($query);
@@ -50,20 +54,19 @@ $app->post("/items", function (Request $req, Response $res, $args) {
         ":precio" => $newItem["precio"],
         ":tipo" => $newItem["tipo"],
         ":imagen" => $newItem["imagen"],
+        ":tipo_imagen" => $newItem["tipo_imagen"],
       ]);
 
       $json = json_encode(['Item insertado correctamente' => $newItem]);
-      $res->withHeader('Content-Type', 'application/json');
       $res->getBody()->write($json);
-      return $res->withStatus(200);
+      return $res->withStatus(200)->withHeader('Content-Type', 'application/json');
     } catch (PDOException $e) {
-      $res->withStatus(500)->withHeader("Content-Type", "application/json");
-      return $res->getBody()->write($e->getMessage());
+      $res->getBody()->write($e->getMessage());
+      return $res->withStatus(500)->withHeader("Content-Type", "application/json");
     }
   } else {
-    $res->withHeader('Content-Type', 'application/json');
     $res->getBody()->write(json_encode(['error' => $error]));
-    return $res->withStatus(400);
+    return $res->withStatus(400)->withHeader('Content-Type', 'application/json');
   }
 
 });
@@ -73,12 +76,15 @@ $app->put('/items/{id}', function (Request $req, Response $res, $args) {
   $updateData = $req->getParsedBody();
 
   $camposParaActualizar = [];
+  $error = array();
 
-  foreach ($updateData as $campo => $valor) {
-    $camposParaActualizar[] = "$campo = '$valor'";
+  // Evalua que se envie un json.
+  if ($updateData !== null) {
+    foreach ($updateData as $campo => $valor) {
+      $camposParaActualizar[] = "$campo = '$valor'";
+    }
   }
 
-  $error = array();
   if (empty($camposParaActualizar)) {
     $error[] = "No se encontraron campos para actualizar.";
   }
@@ -86,23 +92,43 @@ $app->put('/items/{id}', function (Request $req, Response $res, $args) {
 
   if (empty($error)) {
     try {
-      $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+      $db = new Db();
       $pdo = $db->getPDO();
-      $query = "UPDATE items_menu SET " . implode(",", $camposParaActualizar) . " WHERE id = $itemId";
-      $data = $pdo->prepare($query);
-      $data->execute();
+      $checkId = "SELECT COUNT(*) as cont FROM items_menu WHERE id = $itemId";
+      $checkData = $pdo->prepare($checkId);
+      $checkData->execute();
+      $cont = $checkData->fetchColumn();
 
-      $res->withStatus(200)->withHeader("Content-Type", "application/json");
-      $res->getBody()->write("Actualizado corectamente");
-      return $res;
+      if ($cont > 0) {
+
+        try {
+          $query = "UPDATE items_menu SET " . implode(",", $camposParaActualizar) . " WHERE id = $itemId";
+          $data = $pdo->prepare($query);
+          $data->execute();
+
+          $res->getBody()->write("Actualizado corectamente");
+          return $res->withStatus(200)->withHeader("Content-Type", "application/json");
+        } catch (PDOException $e) {
+          $res->getBody()->write($e->getMessage());
+          return $res->withStatus(500)->withHeader("Content-Type", "application/json");
+        }
+
+      } else {
+        // El elemento con el ID enviado no existe
+        $res->getBody()->write("El elemento con ID $itemId no existe.");
+        return $res->withStatus(404)->withHeader("Content-Type", "application/json");
+      }
+
     } catch (PDOException $e) {
-      $res->withStatus(500)->withHeader("Content-Type", "application/json");
+      $res->withStatus(404)->withHeader("Content-Type", "application/json");
       return $res->getBody()->write($e->getMessage());
     }
+
+
   } else {
-    $res->withHeader('Content-Type', 'application/json');
+    // Se envio una solicitud PUT sin datos para actualizar.
     $res->getBody()->write(json_encode(['error' => $error]));
-    return $res->withStatus(404);
+    return $res->withStatus(400)->withHeader('Content-Type', 'application/json');
   }
 
 
@@ -114,33 +140,55 @@ $app->delete("/items/{id}", function (Request $req, Response $res, $args) {
   $query = "SELECT COUNT(*) as cant_pedidos FROM pedidos WHERE idItemMenu = $itemId";
 
   try {
-    $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+    $db = new Db();
     $pdo = $db->getPDO();
-    $data = $pdo->prepare($query);
-    $data->execute();
-    $pedidosCount = $data->fetchColumn();
-    if ($pedidosCount > 0) {
-      // Hay pedidos asociados, no se puede eliminar el ítem
-      $res->withStatus(409)->getBody()->write("No se puede eliminar el ítem debido a pedidos asociados.");
+    $checkId = "SELECT COUNT(*) as cont FROM items_menu WHERE id = $itemId";
+    $checkData = $pdo->prepare($checkId);
+    $checkData->execute();
+    $cont = $checkData->fetchColumn();
 
-    } else {
-      $queryDelete = "DELETE FROM items_menu WHERE id = $itemId";
-      $data = $pdo->prepare($queryDelete);
+    if ($cont > 0) {
 
       try {
+
+        $data = $pdo->prepare($query);
         $data->execute();
-        $res->withStatus(204)->getBody()->write("Item elminado correctamente");
-        return $res;
+        $pedidosCount = $data->fetchColumn();
+        if ($pedidosCount > 0) {
+          // Hay pedidos asociados, no se puede eliminar el ítem
+          $res->getBody()->write("No se puede eliminar el ítem debido a pedidos asociados.");
+          return $res->withStatus(409)->withHeader("Content-Type", "application/json");
+        } else {
+          $queryDelete = "DELETE FROM items_menu WHERE id = $itemId";
+
+          try {
+            $data = $pdo->prepare($queryDelete);
+            $data->execute();
+            $res->getBody()->write("Item elminado correctamente");
+            return $res->withStatus(200)->withHeader("Content-Type", "application/json");
+          } catch (PDOException $e) {
+            $res->getBody()->write("Error al eliminar el item");
+            return $res->withStatus(409)->withHeader("Content-Type", "application/json");
+          }
+        }
       } catch (PDOException $e) {
-        $res->withStatus(500)->getBody()->write("Error al eliminar el item");
-        return $res;
+        $res->getBody()->write('Error' . $e->getMessage());
+        return $res->withStatus(500)->withHeader('Content-Type', 'application/json');
       }
+
+    } else {
+      // No se encontro ID para eliminar
+      $res->getBody()->write("El elemento con ID $itemId no existe.");
+      return $res->withStatus(409)->withHeader("Content-Type", "application/json");
     }
-    return $res;
+
+
   } catch (PDOException $e) {
-    $res->withHeader('Content-Type', 'application/json');
-    return $res->withStatus(400);
+    $res->getBody()->write('Error' . $e->getMessage());
+    return $res->withStatus(500)->withHeader('Content-Type', 'application/json');
   }
+
+
 
 });
 
@@ -162,21 +210,22 @@ $app->get("/items", function (Request $req, Response $res, $args) {
   $query .= " ORDER BY precio " . ($orden === 'asc' ? 'ASC' : 'DESC');
 
   try {
-    $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+    $db = new Db();
     $pdo = $db->getPDO();
     $data = $pdo->prepare($query);
     $data->execute();
     if ($data) {
       $results = $data->fetchAll(PDO::FETCH_ASSOC);
       $json = json_encode($results);
-      $res->withHeader('Content-Type', 'application/json');
       $res->getBody()->write($json);
+      return $res->withStatus(200)->withHeader('Content-Type', 'application/json');
     } else {
       $res->getBody()->write('No se encontraron datos');
+      return $res->withStatus(400)->withHeader('Content-Type', 'application/json');
     }
-    return $res;
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage(); // Preguntar si la respuesta esta bien que sea un echo o tiene que ser un $response
+    $res->getBody()->write('Error' . $e->getMessage());
+    return $res->withStatus(500)->withHeader('Content-Type', 'application/json');
   }
 });
 
@@ -185,27 +234,28 @@ $app->get("/pedidos", function (Request $req, Response $res, $args) {
   $query = "SELECT * FROM pedidos ORDER BY fechaAlta DESC";
 
   try {
-    $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+    $db = new Db();
     $pdo = $db->getPDO();
     $data = $pdo->prepare($query);
     $data->execute();
     if ($data) {
       $results = $data->fetchAll(PDO::FETCH_ASSOC);
       $json = json_encode($results);
-      $res->withHeader('Content-Type', 'application/json');
       $res->getBody()->write($json);
+      return $res->withStatus(200)->withHeader('Content-Type', 'application/json');
     } else {
       $res->getBody()->write('No se encontraron pedidos');
+      return $res->withStatus(404)->withHeader('Content-Type', 'application/json');
     }
-    return $res;
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage(); // Preguntar si la respuesta esta bien que sea un echo o tiene que ser un $response
+    $res->getBody()->write('Error' . $e->getMessage());
+    return $res->withStatus(500)->withHeader('Content-Type', 'application/json');
   }
 });
 
 $app->post("/pedidos", function (Request $req, Response $res, $args) {
   $newItem = $req->getParsedBody();
-  $query = "INSERT INTO pedidos (nromesa,idItemMenu,comentarios) VALUES (:nromesa,:idItemMenu,:comentarios)";
+  $query = "INSERT INTO pedidos (nromesa,idItemMenu,comentarios, fechaAlta) VALUES (:nromesa,:idItemMenu,:comentarios, :fechaAlta)";
   $error = array();
 
   if (!isset($newItem["nromesa"])) {
@@ -218,30 +268,50 @@ $app->post("/pedidos", function (Request $req, Response $res, $args) {
     $newItem["comentarios"] = "Sin comentarios";
   }
 
+  $fechaAlta = date('Y-m-d H:i:s');
+
   if (empty($error)) {
+
     try {
-      $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+      $db = new Db();
       $pdo = $db->getPDO();
+      $idItemMenu = $newItem["idItemMenu"];
+      $checkId = "SELECT COUNT(*) as cont FROM items_menu WHERE id =  $idItemMenu";
+      $checkData = $pdo->prepare($checkId);
+      $checkData->execute();
+      $cont = $checkData->fetchColumn();
 
-      $data = $pdo->prepare($query);
-      $data->execute([
-        ":nromesa" => $newItem["nromesa"],
-        ":idItemMenu" => $newItem["idItemMenu"],
-        ":comentarios" => $newItem["comentarios"],
-      ]);
+      if ($cont > 0) {
 
-      $json = json_encode(['Nuevo pedido realizado' => $newItem]);
-      $res->withHeader('Content-Type', 'application/json');
-      $res->getBody()->write($json);
-      return $res->withStatus(200);
+        try {
+          $data = $pdo->prepare($query);
+          $data->execute([
+            ":nromesa" => $newItem["nromesa"],
+            ":idItemMenu" => $newItem["idItemMenu"],
+            ":comentarios" => $newItem["comentarios"],
+            ":fechaAlta" => $fechaAlta
+          ]);
+
+          $json = json_encode(['Nuevo pedido realizado' => $newItem]);
+          $res->getBody()->write($json);
+          return $res->withStatus(200)->withHeader('Content-Type', 'application/json');
+        } catch (PDOException $e) {
+          $res->getBody()->write($e->getMessage());
+          return $res->withStatus(404)->withHeader('Content-Type', 'application/json');
+        }
+      } else {
+        // No se encontro IdItemMenu para asociar al pedido
+        $res->getBody()->write("El elemento del menu con ID $idItemMenu no existe, por lo que no se puede asociar al nuevo pedido.");
+        return $res->withStatus(400)->withHeader("Content-Type", "application/json");
+      }
     } catch (PDOException $e) {
-      $res->withStatus(500)->withHeader("Content-Type", "application/json");
-      return $res->getBody()->write($e->getMessage());
+      $res->getBody()->write($e->getMessage());
+      return $res->withStatus(404)->withHeader("Content-Type", "application/json");
     }
   } else {
-    $res->withHeader('Content-Type', 'application/json');
+    // Faltan campos para el pedido
     $res->getBody()->write(json_encode(['error' => $error]));
-    return $res->withStatus(400);
+    return $res->withStatus(400)->withHeader("Content-Type", "application/json");
   }
 
 });
@@ -250,42 +320,63 @@ $app->get("/pedidos/{id}", function (Request $req, Response $res, $args) {
   $idPedido = $args['id'];
   $query = "SELECT pedidos.*, items_menu.nombre, items_menu.precio, items_menu.tipo, items_menu.imagen FROM pedidos INNER JOIN items_menu ON pedidos.idItemMenu = items_menu.id WHERE pedidos.id=$idPedido";
   try {
-    $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+    $db = new Db();
     $pdo = $db->getPDO();
     $data = $pdo->prepare($query);
     $data->execute();
     if ($data->rowCount() > 0) {
       $results = $data->fetchAll(PDO::FETCH_ASSOC);
       $json = json_encode($results);
-      $res->withHeader('Content-Type', 'application/json');
       $res->getBody()->write($json);
+      return $res->withStatus(200)->withHeader('Content-Type', 'application/json');
     } else {
       $res->getBody()->write('No se encontro pedido con ese ID');
+      return $res->withStatus(404)->withHeader('Content-Type', 'application/json');
     }
-    return $res;
   } catch (PDOException $e) {
     $res->getBody()->write($e->getMessage());
-    return $res->withStatus(500);
+    return $res->withStatus(404)->withHeader('Content-Type', 'application/json');
   }
 });
 
 $app->delete("/pedidos/{id}", function (Request $req, Response $res, $args) {
   $itemId = $args['id'];
 
-
   $queryDelete = "DELETE FROM pedidos WHERE id = $itemId";
 
   try {
-    $db = new Db("localhost", "menu_unlp_2", "root", ""); // Preguntar si en cada endpoint tengo que instanciar la conexion.
+    $db = new Db();
     $pdo = $db->getPDO();
-    $data = $pdo->prepare($queryDelete);
-    $data->execute();
-    $res->withStatus(204)->getBody()->write("Pedido elminado correctamente");
-    return $res;
+    $checkId = "SELECT COUNT(*) as cont FROM pedidos WHERE id = $itemId";
+    $checkData = $pdo->prepare($checkId);
+    $checkData->execute();
+    $cont = $checkData->fetchColumn();
+
+    if ($cont > 0) {
+
+      try {
+        $db = new Db();
+        $pdo = $db->getPDO();
+        $data = $pdo->prepare($queryDelete);
+        $data->execute();
+        $res->getBody()->write("Pedido elminado correctamente");
+        return $res->withStatus(200)->withHeader('Content-Type', 'application/json');
+      } catch (PDOException $e) {
+        $res->getBody()->write($e->getMessage());
+        return $res->withStatus(404)->withHeader('Content-Type', 'application/json');
+      }
+
+    } else {
+      // No se encontro pedido con el ID enviado
+      $res->getBody()->write("El elemento con ID $itemId no existe.");
+      return $res->withStatus(409)->withHeader('Content-Type', 'application/json');
+    }
   } catch (PDOException $e) {
-    $res->withStatus(500)->getBody()->write("Error al eliminar el item");
-    return $res;
+    $res->getBody()->write($e->getMessage());
+    return $res->withStatus(404)->withHeader('Content-Type', 'application/json');
   }
+
+
 });
 
 $app->run();

@@ -9,12 +9,12 @@ class Db
   private $username;
   private $password;
   private $pdo;
-  public function __construct($host, $dbname, $username, $password)
+  public function __construct()
   {
-    $this->host = $host;
-    $this->dbname = $dbname;
-    $this->username = $username;
-    $this->password = $password;
+    $this->host = "localhost";
+    $this->dbname = "menu_unlp_2";
+    $this->username = "root";
+    $this->password = "";
 
     try {
       $this->pdo = new \PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);
