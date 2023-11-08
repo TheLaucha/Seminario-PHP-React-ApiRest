@@ -1,11 +1,11 @@
-1) Consultar sobre la instancia recurrente de la base de datos
-2) Consultar en la creacion de items, como deberia insertarse la imagen y el tipo de imagen.
-3) Consultar por el PDO Exeption, nose si esta funcionando correctamente.
-4) Al momento de eliminar un item, deberia evaluar que ese item exista ? ahora no lo estoy evaluando y el mensaje que retorna es como si se hubiese eliminado un item, cuando el item eliminado en realidad no existe.
-5) Al insertar un nuevo pedido deberia evaluar que el idItemMenu (osea el el item del menu) exista ? 
-6) Al insertar un nuevo pedido la fechaAlta se pone todo en 00000
+1) Consultar sobre la instancia recurrente de la base de datos (Cambiar los datos de conexion a una constante dentro de la clase.)
+2) Consultar en la creacion de items, como deberia insertarse la imagen y el tipo de imagen. (Deberia mandarse un base64 y en el codigo de la proxima entrega decodearlo y tambien agregar "tipo" al insert)
+3) Consultar por el PDO Exeption, nose si esta correctamente. (Esta OK, hay que agregar validaciones.)
+4) Al momento de eliminar un item, deberia evaluar que ese item exista ? ahora no lo estoy evaluando y el mensaje que retorna es como si se hubiese eliminado un item, cuando el item eliminado en realidad no existe. (Deberia evaluar que exista o devolver el codigo que corresponde)
+5) Al insertar un nuevo pedido deberia evaluar que el idItemMenu (osea el el item del menu) exista ? (Si deberia evaluarlo tambien.) 
+6) Al insertar un nuevo pedido la fechaAlta se pone todo en 00000 (Agregar fecha de alta a la query del codigo)
 
-CAMBIAR MODO DE CONSULTA A INTERPOLACION.
-EVALUAR MENSAJES TANTO DE EXITO COMO DE ERROR.
-PONER TODOS LOS $RES de igual manera
-EVALUAR MSJ DE STATUS 400,200,404 etc
+CAMBIAR MODO DE CONSULTA A INTERPOLACION. ->      OK
+EVALUAR MENSAJES TANTO DE EXITO COMO DE ERROR. -> OK
+PONER TODOS LOS $RES de igual manera ->           OK
+EVALUAR MSJ DE STATUS 400,200,404 etc ->          OK

@@ -1,6 +1,5 @@
 <?php
 
-use App\Controllers\ItemController;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -92,6 +91,7 @@ $app->put('/items/{id}', function (Request $req, Response $res, $args) {
       $query = "UPDATE items_menu SET " . implode(",", $camposParaActualizar) . " WHERE id = $itemId";
       $data = $pdo->prepare($query);
       $data->execute();
+
       $res->withStatus(200)->withHeader("Content-Type", "application/json");
       $res->getBody()->write("Actualizado corectamente");
       return $res;
