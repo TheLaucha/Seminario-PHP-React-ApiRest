@@ -1,0 +1,19 @@
+.Footer {
+  background-color: var(--red);
+  color: var(--cream);
+}
+
+.Footer .integrante {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Footer .integrante img {
+  width: 64px;
+}
+
+.Footer .integrante p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}

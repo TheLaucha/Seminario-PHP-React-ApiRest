@@ -1,0 +1,43 @@
+.Header {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--cream);
+}
+
+.Header .left {
+  flex: 3;
+}
+
+.Header .left img {
+  max-width: 100%;
+}
+
+.Header .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 4;
+}
+
+.Header .right .headerTitle {
+  margin: 0;
+  text-align: right;
+  font-family: "Mochiy Pop One", sans-serif;
+  letter-spacing: 0.6rem;
+  font-size: 4rem;
+  color: var(--red);
+}
+
+.Header .right .headerTitle:nth-child(2) {
+  text-align: left;
+}
+
+.Header .right a {
+  align-self: flex-end;
+  margin-top: 3rem;
+  text-align: right;
+}
+
+.Header .right a .headerBtn {
+  font-size: 1.2rem;
+}

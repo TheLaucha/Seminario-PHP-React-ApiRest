@@ -1,0 +1,67 @@
+.NewItemPage {
+  background-color: var(--blue);
+  color: var(--cream);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.NewItemPage h1 {
+  text-align: center;
+  grid-column: 1 / 3;
+  color: var(--cream);
+}
+
+.NewItemPage .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.NewItemPage .form .formItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.NewItemPage .form .formItem label {
+  font-size: 1.2rem;
+}
+
+.NewItemPage .form .formItem input,
+.NewItemPage .form .formItem select {
+  box-sizing: border-box;
+  font-family: "Sawarabi Mincho", serif;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+.NewItemPage .form .formItem .errorMsg {
+  color: var(--red);
+  background-color: var(--cream);
+  margin-top: 0.5rem;
+}
+
+.NewItemPage .form .createBtn {
+  border-color: var(--cream);
+  color: var(--cream);
+  width: 50%;
+}
+
+.NewItemPage .form .createBtn:hover {
+  background-color: var(--cream);
+  color: var(--blue);
+}
+
+.NewItemPage .messageContainer {
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+  background-color: var(--cream);
+  color: var(--black);
+}

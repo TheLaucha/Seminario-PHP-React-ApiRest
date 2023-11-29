@@ -1,0 +1,78 @@
+.Navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cream);
+}
+
+.Navbar .header {
+  display: flex;
+  align-items: stretch;
+}
+
+.Navbar .header .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  flex-grow: 1;
+  text-align: center;
+  border: 2px solid var(--black);
+}
+
+.Navbar .header .left img {
+  max-width: 64px;
+}
+
+.Navbar .header .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 10;
+  border: 2px solid var(--black);
+  border-left: 0px;
+}
+
+.Navbar .header .right h1 {
+  font-family: "Mochiy Pop One", sans-serif;
+  text-align: center;
+  color: var(--black);
+}
+
+.Navbar .nav {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.Navbar .nav li {
+  text-align: center;
+}
+
+.Navbar .nav li a {
+  display: block;
+  padding: 0.5rem 0;
+  border: 2px solid var(--black);
+  border-top: 0px;
+  font-weight: bold;
+}
+
+.Navbar .nav li:nth-child(1) .navLink {
+  border-right: 0px;
+}
+.Navbar .nav li:nth-child(2) .navLink {
+  border-right: 0px;
+}
+.Navbar .nav li:nth-child(3) .navLink {
+  border-right: 0px;
+}
+.Navbar .nav li:nth-child(4) .navLink {
+  border-right: 0px;
+}
+
+.Navbar .nav li a:hover {
+  background-color: var(--black);
+  transition: all 0.2s;
+  color: var(--cream);
+}

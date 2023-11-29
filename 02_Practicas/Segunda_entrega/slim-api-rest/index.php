@@ -4,6 +4,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use App\Models\Db;
+use Psr\Http\Server\RequestHandlerInterface;
+use Slim\Routing\RouteCollectorProxy;
+use Slim\Routing\RouteContext;
+use Tuupola\Middleware\CorsMiddleware;
+
+
 
 require __DIR__ . '/vendor/autoload.php';
 require 'src/Models/Db.php';
@@ -16,8 +22,54 @@ $app->get('/', function (Request $request, Response $response, $args) {
   return $response;
 });
 
+// Habilito CORS
+
+// This middleware will append the response header Access-Control-Allow-Methods with all allowed methods
+// $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
+//   $routeContext = RouteContext::fromRequest($request);
+//   $routingResults = $routeContext->getRoutingResults();
+//   $methods = $routingResults->getAllowedMethods();
+//   $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
+
+//   $response = $handler->handle($request);
+
+//   $response = $response->withHeader('Access-Control-Allow-Origin', '*');
+//   $response = $response->withHeader('Access-Control-Allow-Methods', implode(',', $methods));
+//   $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
+
+//   // Optional: Allow Ajax CORS requests with Authorization header
+//   $response = $response->withHeader('Access-Control-Allow-Credentials', 'true');
+
+//   return $response;
+// });
+
+// The RoutingMiddleware should be added after our CORS middleware so routing is performed first
+// $app->addRoutingMiddleware();
+
+// $app->add(new Tuupola\Middleware\CorsMiddleware([
+//   "origin" => ["*"],
+//   "methods" => ["GET", "POST", "PUT", "PATCH", "DELETE"],
+//   "headers.allow" => [],
+//   "headers.expose" => [],
+//   "credentials" => false,
+//   "cache" => 0,
+// ]));
+
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+  return $response;
+});
+
+$app->add(function ($request, $handler) {
+  $response = $handler->handle($request);
+  return $response
+    ->withHeader('Access-Control-Allow-Origin', '*')
+    ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+
 // ITEMS
 $app->post("/items", function (Request $req, Response $res, $args) {
+
   $newItem = $req->getParsedBody();
   $query = "INSERT INTO items_menu (nombre,precio,tipo,imagen,tipo_imagen) VALUES (:nombre, :precio, :tipo, :imagen, :tipo_imagen)";
   $error = array();
@@ -57,7 +109,7 @@ $app->post("/items", function (Request $req, Response $res, $args) {
         ":tipo_imagen" => $newItem["tipo_imagen"],
       ]);
 
-      $json = json_encode(['Item insertado correctamente' => $newItem]);
+      $json = json_encode([$newItem]);
       $res->getBody()->write($json);
       return $res->withStatus(200)->withHeader('Content-Type', 'application/json');
     } catch (PDOException $e) {
@@ -193,6 +245,7 @@ $app->delete("/items/{id}", function (Request $req, Response $res, $args) {
 });
 
 $app->get("/items", function (Request $req, Response $res, $args) {
+
   $params = $req->getQueryParams();
   $tipo = $params['tipo'] ?? null;
   $nombre = $params['nombre'] ?? null;
@@ -378,6 +431,19 @@ $app->delete("/pedidos/{id}", function (Request $req, Response $res, $args) {
 
 
 });
+
+// LAST ROUTE PARA HABILITAR CORS
+
+use Slim\Exception\HttpNotFoundException;
+
+/**
+ * Catch-all route to serve a 404 Not Found page if none of the routes match
+ * NOTE: make sure this route is defined last
+ */
+$app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request, $response) {
+  throw new HttpNotFoundException($request);
+});
+
 
 $app->run();
 

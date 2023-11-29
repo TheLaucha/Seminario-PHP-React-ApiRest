@@ -1,0 +1,3 @@
+1) En la pagina EditItem.jsx yo lo que estoy haciendo es pasar el ID del item para luego llamar a la api a buscar ese ID.
+Pero tambien podria pasar todos los datos del elemento a editar y me evitaria llamar a la API.
+Cual es la forma que deberia usar ? 

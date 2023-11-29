@@ -1,0 +1,87 @@
+.ItemsPage {
+  background-color: var(--cream);
+}
+
+.ItemsPage .itemsPageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ItemsPage .itemsPageHeader .pageTitle {
+  font-family: "Mochiy Pop One", sans-serif;
+  color: var(--red);
+}
+
+.ItemsPage .itemsPageHeader .newItemBtn {
+  border-color: var(--purple);
+  color: var(--purple);
+  font-size: 1.2rem;
+}
+
+.ItemsPage .itemsPageHeader .newItemBtn:hover {
+  background-color: var(--purple);
+  color: var(--cream);
+}
+
+.ItemsPage .itemContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ItemsPage .itemContainer .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  gap: 0.5rem;
+}
+
+.ItemsPage .itemContainer .item .itemImg {
+  max-width: 100%;
+}
+
+.ItemsPage .itemContainer .item .itemInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.ItemsPage .itemContainer .item .itemInfo .itemName {
+  flex: 2;
+  font-weight: bold;
+}
+
+.ItemsPage .itemContainer .item .itemInfo .itemPrice {
+  flex: 2;
+  font-weight: bold;
+}
+
+.ItemsPage .itemContainer .item .itemInfo .itemType {
+  flex: 3;
+  color: var(--cream);
+  background-color: var(--black);
+}
+
+.ItemsPage .itemContainer .item .itemActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ItemsPage .itemContainer .item .itemActions .itemEdit {
+  border-color: var(--blue);
+  color: var(--blue);
+  font-size: 0.8rem;
+}
+
+.ItemsPage .itemContainer .item .itemActions .itemDelete {
+  font-size: 0.8rem;
+}
+
+.ItemsPage .itemContainer .item .itemActions .itemEdit:hover {
+  background-color: var(--blue);
+  color: var(--cream);
+}

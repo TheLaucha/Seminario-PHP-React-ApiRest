@@ -1,0 +1,67 @@
+.EditItemPage {
+  background-color: var(--blue);
+  color: var(--cream);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.EditItemPage h1 {
+  text-align: center;
+  grid-column: 1 / 3;
+  color: var(--cream);
+}
+
+.EditItemPage .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.EditItemPage .form .formItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.EditItemPage .form .formItem label {
+  font-size: 1.2rem;
+}
+
+.EditItemPage .form .formItem input,
+.EditItemPage .form .formItem select {
+  box-sizing: border-box;
+  font-family: "Sawarabi Mincho", serif;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+.EditItemPage .form .formItem .errorMsg {
+  color: var(--red);
+  background-color: var(--cream);
+  margin-top: 0.5rem;
+}
+
+.EditItemPage .form .createBtn {
+  border-color: var(--cream);
+  color: var(--cream);
+  width: 50%;
+}
+
+.EditItemPage .form .createBtn:hover {
+  background-color: var(--cream);
+  color: var(--blue);
+}
+
+.EditItemPage .messageContainer {
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+  background-color: var(--cream);
+  color: var(--black);
+}

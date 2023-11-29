@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Pabellón Criollo",
+    "description": "Plato tradicional venezolano que consiste en carne deshebrada, frijoles negros, arroz, plátanos fritos y un huevo frito.",
+    "photo": "https://img.freepik.com/fotos-premium/pabellon-criollo-comida-tipica-venezolana_359687-624.jpg"
+  },
+  {
+    "name": "Arepas",
+    "description": "Un tipo de pan de maíz que se puede rellenar con una variedad de ingredientes, como queso, carne o frijoles.",
+    "photo": "https://img.freepik.com/foto-gratis/deliciosas-arepas-alto-angulo-sobre-tabla-madera_23-2148708228.jpg"
+  },
+  {
+    "name": "Cachapas",
+    "description": "Un tipo de panqueque hecho de harina de maíz y queso.",
+    "photo": "https://img.freepik.com/fotos-premium/cachapas-queso-mantequilla-maiz-maiz-molido-queso-blanco-cocina-venezolana_214787-374.jpg"
+  },
+  {
+    "name": "Empanadas",
+    "description": "Pasteles fritos rellenos con una variedad de ingredientes, como carne, queso o verduras.",
+    "photo": "https://img.freepik.com/foto-gratis/primer-plano-mano-persona-sosteniendo-deliciosa-bola-masa-hervida-casera_181624-25146.jpg"
+  },
+  {
+    "name": "Tequeños",
+    "description": "Tipo de masa frita rellena de queso.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Tequeñones",
+    "description": "Tipo de masa frita rellena de queso.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Tequeños copetín",
+    "description": "Tipo de masa frita rellena de queso.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Tequeño de plátano",
+    "description": "Tipo de masa frita rellena de queso.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Pollo Crispy",
+    "description": "Tender de pechugas de pollo apanadas con cereales copos va acompañado con papas fritas y aderezo.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Milanecitas",
+    "description": "Tender de carne apanadas con pan especias acompañado con papas y aderezo.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Alas de pollo",
+    "description": "Alas apanadas acompañada con papas y aderezo.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Mini pastelitos copetín",
+    "description": "Mini pastelitos copetín de carne picada y aderezo.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Chaufa de pollo",
+    "description": "Arroz salteados con vegetales corte brunnoises, verdeo, pollo, salsa de soja, huevo, sésamo, gengibre, láminas de ajo.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  },
+  {
+    "name": "Pasta Thai",
+    "description": "Tallarines salteados con vegetales corte juliana, verdeo, pollo, salsa de soja, ajo, sésamo y gengibre.",
+    "photo": "https://img.freepik.com/foto-gratis/composicion-deliciosa-palitos-queso-venezolano_23-2149050110.jpg"
+  }
+]
