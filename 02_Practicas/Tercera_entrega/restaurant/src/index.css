@@ -53,3 +53,37 @@ a:visited {
   font-family: "Mochiy Pop One", sans-serif;
   color: var(--red);
 }
+
+.cardContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  gap: 0.5rem;
+}
+
+.cardImage {
+  max-width: 100%;
+  object-fit: cover;
+  height: 250px;
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.cardActions {
+  display: flex;
+  justify-content: space-between;
+}

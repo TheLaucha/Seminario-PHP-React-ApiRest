@@ -1,0 +1,48 @@
+.PedidosPage {
+  background-color: var(--cream);
+}
+
+.PedidosPage .pedidosPageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.itemName {
+  flex: 2;
+  font-weight: bold;
+}
+
+.itemPrice {
+  flex: 2;
+  font-weight: bold;
+}
+
+.itemType {
+  flex: 3;
+  color: var(--cream);
+  background-color: var(--black);
+}
+
+.itemNromesa {
+  flex: 0 0 100%;
+}
+
+.itemComentarios {
+  flex: 0 0 100%;
+}
+
+.pedidoDelete {
+  flex: 0 0 100%;
+}
+
+.PedidosPage .pedidosPageHeader .newPedidoBtn {
+  border-color: var(--purple);
+  color: var(--purple);
+  font-size: 1.2rem;
+}
+
+.PedidosPage .pedidosPageHeader .newPedidoBtn:hover {
+  background-color: var(--purple);
+  color: var(--cream);
+}

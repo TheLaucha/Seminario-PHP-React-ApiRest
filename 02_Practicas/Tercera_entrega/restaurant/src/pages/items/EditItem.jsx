@@ -136,22 +136,13 @@ const EditItem = () => {
           <label htmlFor='imagen'>IMAGEN</label>
           <input type='file' name='imagen' onChange={handleImageChange} />
         </div>
-        <button type='submit' className={`${styles.createBtn} btn`}>
+        <button type='submit' className={`${styles.editBtn} btn`}>
           EDITAR
         </button>
       </form>
       {message && (
         <div className={styles.messageContainer}>
-          <code>
-            {JSON.stringify(message)}
-            {/* {`{`} <br />
-            &ensp; nombre: {message.itemToEdit.} <br />
-            &ensp; precio: {message.precio} <br />
-            &ensp; tipo: {message.tipo} <br />
-            &ensp; imagen: {message.imagen.substring(0, 20)} <br />
-            &ensp; tipo_imagen: {message.tipo_imagen} <br />
-            {`}`} */}
-          </code>
+          <pre>{JSON.stringify(message, null, 2)}</pre>
         </div>
       )}
     </div>

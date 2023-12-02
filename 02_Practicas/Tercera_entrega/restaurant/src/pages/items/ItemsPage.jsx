@@ -9,14 +9,20 @@ const ItemsPage = () => {
 
   // Al iniciar la pagina se traen todos los items.
   useEffect(() => {
-    fetch("http://localhost:8080/items")
-      .then((response) => response.json())
-      .then((data) => setItems(data))
+    try {
+      fetch("http://localhost:8080/items")
+        .then((response) => response.json())
+        .then((data) => setItems(data))
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
   // Cada vez que aplico un filtro se ejecuta esta funcion y actualiza la lista.
   const handleFilter = (filtro) => {
     const { nombre, orden, tipo } = filtro
+    let urlFinal = `http://localhost:8080/items?nombre=${nombre}&orden=${orden}&tipo=${tipo}`
+    console.log(urlFinal)
     fetch(`http://localhost:8080/items?nombre=${nombre}&orden=${orden}&tipo=${tipo}`)
       .then((response) => response.json())
       .then((data) => setItems(data))
@@ -35,7 +41,7 @@ const ItemsPage = () => {
           const msgError = await response.text()
           alert("Error al intentar elimiar el elemento: " + msgError)
         } else {
-          // Eliminación exitosa, posiblemente actualizar el estado o realizar otras acciones
+          // Eliminación exitosa
           console.log("Elemento eliminado correctamente")
           const filterItems = items.filter((el) => el.id !== id)
           setItems(filterItems)
@@ -55,18 +61,19 @@ const ItemsPage = () => {
         </Link>
       </header>
       <FilterComponent handleFilter={handleFilter}></FilterComponent>
-      <div className={styles.itemContainer}>
+      <div className='cardContainer'>
         {items.length > 0 &&
           items.map((el) => {
+            let imageUrl = `data:image/${el.tipo_imagen};base64,${el.imagen}`
             return (
-              <div className={styles.item} key={el.id}>
-                <img src={ramen_menu} alt='' className={styles.itemImg} />
-                <div className={styles.itemInfo}>
+              <div className='card' key={el.id}>
+                <img src={imageUrl} alt='' className='cardImage' />
+                <div className='cardInfo'>
                   <span className={styles.itemName}>{el.nombre}</span>
                   <span className={styles.itemPrice}>${el.precio}</span>
-                  <span className={`${styles.itemType} ${el.tipo}`}>{el.tipo}</span>
+                  <span className={`${styles.itemType}`}>{el.tipo}</span>
                 </div>
-                <div className={styles.itemActions}>
+                <div className='cardActions'>
                   <button
                     className={`${styles.itemDelete} btn`}
                     onClick={() => handleDelete(el.id)}

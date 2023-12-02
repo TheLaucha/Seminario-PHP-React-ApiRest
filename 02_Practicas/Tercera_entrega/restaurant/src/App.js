@@ -1,4 +1,3 @@
-import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import ItemsPage from "./pages/items/ItemsPage"
 import EditItem from "./pages/items/EditItem"

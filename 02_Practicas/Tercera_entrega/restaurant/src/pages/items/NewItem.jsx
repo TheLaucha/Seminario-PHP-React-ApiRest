@@ -2,8 +2,6 @@ import React, { useState } from "react"
 import styles from "./NewItem.module.css"
 
 const NewItem = () => {
-  // Tengo que ver como manejar el tipo de imagen a partir de la imagen cargada.
-
   const [newItem, setNewItem] = useState({
     nombre: "",
     precio: "",
@@ -104,6 +102,17 @@ const NewItem = () => {
     }
   }
 
+  const limitarLongitud = (obj) => {
+    const MAX_CARACTERES_BASE64 = 50
+
+    if (obj && obj.imagen) {
+      // Limita la longitud del base64
+      obj.imagen = obj.imagen.substring(0, MAX_CARACTERES_BASE64)
+    }
+
+    return obj
+  }
+
   return (
     <div className={`${styles.NewItemPage} container`}>
       <h1 className='pageTitle'>CREAR NUEVO ITEM</h1>
@@ -138,17 +147,7 @@ const NewItem = () => {
 
       {message && (
         <div className={styles.messageContainer}>
-          <code>
-            {/* {message} */}
-            Item insertado correctamente:
-            {`{`} <br />
-            &ensp; nombre: {message.nombre} <br />
-            &ensp; precio: {message.precio} <br />
-            &ensp; tipo: {message.tipo} <br />
-            &ensp; imagen: {message.imagen.substring(0, 20)} <br />
-            &ensp; tipo_imagen: {message.tipo_imagen} <br />
-            {`}`}
-          </code>
+          <pre>{JSON.stringify(limitarLongitud(message), null, 2)}</pre>
         </div>
       )}
     </div>

@@ -50,7 +50,7 @@
 .NewItemPage .form .createBtn {
   border-color: var(--cream);
   color: var(--cream);
-  width: 50%;
+  width: 100%;
 }
 
 .NewItemPage .form .createBtn:hover {
@@ -62,6 +62,7 @@
   box-sizing: border-box;
   padding: 1rem;
   width: 100%;
+  max-width: 100%;
   background-color: var(--cream);
   color: var(--black);
 }

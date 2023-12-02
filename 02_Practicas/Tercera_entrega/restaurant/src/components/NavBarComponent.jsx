@@ -1,5 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
+import { HashLink } from "react-router-hash-link"
 import ramenLogo from "../assets/ramen_logo.svg"
 import styles from "./NavBarComponent.module.css"
 
@@ -26,19 +27,19 @@ const NavBarComponent = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/' className={styles.navLink}>
-            Otro
+          <NavLink to='/newItem' className={styles.navLink}>
+            Crear nuevo item
           </NavLink>
         </li>
         <li>
-          <NavLink to='/' className={styles.navLink}>
-            Otro
+          <NavLink to='/newPedido' className={styles.navLink}>
+            Crear pedido
           </NavLink>
         </li>
         <li>
-          <NavLink to='/' className={styles.navLink}>
-            Otro
-          </NavLink>
+          <HashLink to='#footer' className={styles.navLink}>
+            Nuestros Chefs
+          </HashLink>
         </li>
       </ul>
     </div>
