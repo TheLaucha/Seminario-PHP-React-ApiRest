@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# MENU UNLP - TERCERA ENTREGA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+La aplicacion final simula ser un menu de un restaurante con la que podemos CREAR, EDITAR, LEER O ELIMINAR distintos platos de la carta. Tambien tenemos la posibilidad de manejar una lista de pedidos realizados con las mismas funciones.
 
-## Available Scripts
+## Tabla de Contenidos
 
-In the project directory, you can run:
+- [Instalación](#Instalación)
+- [Ejecución del Frontend](#Ejecución-del-frontend)
+- [Configuración del Backend](#Configuración-del-backend)
+- [Configuración de la Base de Datos](#Configuración-de-la-base-de-datos)
+- [Uso](#Uso)
+- [Dependencias](#Dependencias)
+- [Capturas de Pantalla](#capturas-de-pantalla)
 
-### `npm start`
+## Instalación
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clona este repositorio que pertene al front-end: `git clone https://github.com/TheLaucha/MENU_UNLP_FRONT.git`
+2. Accede al directorio del proyecto: `cd MENU_UNLP_FRONT`
+3. Instala las dependencias: `npm install`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Ejecución del Frontend
 
-### `npm test`
+Para iniciar la aplicación frontend:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm start
+```
 
-### `npm run build`
+## Configuracion del back-end
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clona el siguiente repositorio que pertene al back-end: `git clone https://github.com/TheLaucha/MENU_UNLP_BACK.git`
+2. Accede al directorio del proyecto: `cd MENU_UNLP_BACK`
+3. Instala las dependencias: `npm install`
+4. Inicia el servidor del backend: `php -S localhost:8080`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Configuracion de la base de datos
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Instala y configura tu servidor MySQL.
+2. Crea una nueva base de datos.
+3. Configura las credenciales de la base de datos en el backend.
 
-### `npm run eject`
+## Uso
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+En el repositorio back-end se encuentra a disposicion un archivo llamado `SLIM_API_REST.postman_collection.json` el cual contiene todos los endpoints con ejemplos para realizar las comunicaciones con la API.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Dependencias
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Front-end
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. react
+2. react-router-dom
+3. react-router-hash-link
 
-## Learn More
+### Back-end
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. slim
+2. slim/psr7
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Capturas de pantalla
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Design preview desktop](./src/assets/preview_desktop.png)
+![Design preview mobile](./src/assets/preview_mobile.png)
