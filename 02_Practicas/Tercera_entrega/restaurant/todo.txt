@@ -6,6 +6,7 @@ Cual es la forma que deberia usar ?
 [X] Cambiar codigo cuando se muestra el json de la respuesta, deberia ser un <pre> y un json.stringify(items,null,2)
 [X] Hacer la que las imagenes se decodifiquen y muestren normalmente.
 [X] Si no llego con el tiempo, buscar una imagen de ramen, otra de bebida y una tercera para que sirva de ejemplo.
-[] Hacer la pagina responsiva
+[X] Hacer la pagina responsiva
 [] Mejorar los mensajes de error.
 [] Documentar
+[X] Solucionar problemas de la API

@@ -48,6 +48,11 @@ $app->post("/items", function (Request $req, Response $res, $args) {
   }
   if (!isset($newItem["precio"])) {
     $error[] = "El campo 'precio' es obligatorio.";
+  } else {
+    $price = $newItem["precio"];
+    if (!is_numeric($price)) {
+      $error[] = "El precio debe ser de tipo numero";
+    }
   }
   if (!isset($newItem["tipo"])) {
     $error[] = "El campo 'tipo' es obligatorio.";
@@ -97,17 +102,33 @@ $app->put('/items/{id}', function (Request $req, Response $res, $args) {
   $updateData = $req->getParsedBody();
 
   $camposParaActualizar = [];
+  $campostParaValidar = [];
   $error = array();
 
   // Evalua que se envie un json.
   if ($updateData !== null) {
     foreach ($updateData as $campo => $valor) {
       $camposParaActualizar[] = "$campo = '$valor'";
+      $campostParaValidar[$campo] = $valor;
     }
   }
 
+
   if (empty($camposParaActualizar)) {
     $error[] = "No se encontraron campos para actualizar.";
+  }
+
+  if (isset($campostParaValidar["precio"])) {
+    $price = $campostParaValidar["precio"];
+    if (!is_numeric($price)) {
+      $error[] = "El precio debe ser de tipo numero";
+    }
+  }
+  if (isset($campostParaValidar["tipo"])) {
+    $strUpperCase = strtoupper($campostParaValidar["tipo"]);
+    if ($strUpperCase !== "COMIDA" && $strUpperCase !== "BEBIDA") {
+      $error[] = "El campo 'tipo' debe ser COMIDA o BEBIDA";
+    }
   }
 
 
@@ -285,6 +306,10 @@ $app->post("/pedidos", function (Request $req, Response $res, $args) {
 
   if (!isset($newItem["nromesa"])) {
     $error[] = "El campo 'nromesa' es obligatorio.";
+  } else {
+    if (!is_numeric($newItem["nromesa"])) {
+      $error[] = "El campo 'nromesa' debe ser un numero.";
+    }
   }
   if (!isset($newItem["idItemMenu"])) {
     $error[] = "El campo 'idItemMenu' es obligatorio.";

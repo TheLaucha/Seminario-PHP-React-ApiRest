@@ -41,3 +41,39 @@
 .Header .right a .headerBtn {
   font-size: 1.2rem;
 }
+
+@media all and (max-width: 1280px) {
+}
+
+@media all and (max-width: 1024px) {
+  .Header .left {
+    flex: 1;
+  }
+  .Header .right {
+    flex: 1;
+  }
+  .Header .right .headerTitle {
+    letter-spacing: 0.6rem;
+    font-size: 3rem;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .Header .right .headerTitle {
+    letter-spacing: 0.4rem;
+    font-size: 2.5rem;
+  }
+}
+
+@media all and (max-width: 640px) {
+  .Header {
+    flex-direction: column;
+  }
+  .Header .left {
+    align-self: center;
+  }
+  .Header .left img {
+    text-align: center;
+    max-width: 250px;
+  }
+}

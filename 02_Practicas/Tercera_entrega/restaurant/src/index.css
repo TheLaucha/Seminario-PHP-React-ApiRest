@@ -87,3 +87,13 @@ a:visited {
   display: flex;
   justify-content: space-between;
 }
+
+@media all and (max-width: 640px) {
+  .cardContainer {
+    justify-content: center;
+  }
+  .card {
+    padding: 1rem;
+    width: 100%;
+  }
+}

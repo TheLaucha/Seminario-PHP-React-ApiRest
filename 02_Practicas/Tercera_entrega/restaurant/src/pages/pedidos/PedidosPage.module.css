@@ -46,3 +46,10 @@
   background-color: var(--purple);
   color: var(--cream);
 }
+
+@media all and (max-width: 768px) {
+  .PedidosPage .pedidosPageHeader {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

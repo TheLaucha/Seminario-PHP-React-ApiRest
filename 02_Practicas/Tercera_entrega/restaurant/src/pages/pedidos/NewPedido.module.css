@@ -66,3 +66,12 @@
   background-color: var(--cream);
   color: var(--black);
 }
+
+@media all and (max-width: 768px) {
+  .NewPedidoPage {
+    grid-template-columns: 1fr;
+  }
+  .NewPedidoPage h1 {
+    grid-column: auto;
+  }
+}

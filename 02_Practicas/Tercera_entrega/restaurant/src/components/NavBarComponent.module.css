@@ -56,6 +56,7 @@
   border: 2px solid var(--black);
   border-top: 0px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .Navbar .nav li:nth-child(1) .navLink {
@@ -75,4 +76,25 @@
   background-color: var(--black);
   transition: all 0.2s;
   color: var(--cream);
+}
+
+@media all and (max-width: 768px) {
+  .Navbar .nav {
+    grid-template-columns: 1fr;
+  }
+  .Navbar .nav li:nth-child(1) .navLink {
+    border-right: 1px solid #000;
+  }
+  .Navbar .nav li:nth-child(2) .navLink {
+    border-right: 1px solid #000;
+  }
+  .Navbar .nav li:nth-child(3) .navLink {
+    border-right: 1px solid #000;
+  }
+  .Navbar .nav li:nth-child(4) .navLink {
+    border-right: 1px solid #000;
+  }
+}
+
+@media all and (max-width: 480px) {
 }
