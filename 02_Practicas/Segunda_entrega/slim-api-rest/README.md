@@ -14,7 +14,14 @@ La aplicacion final simula ser un menu de un restaurante con la que podemos CREA
 
 ## Instalación
 
-1. Clona este repositorio que pertene al front-end: `git clone https://github.com/TheLaucha/MENU_UNLP_FRONT.git`
+1. Clona este repositorio que pertene al back-end: `git clone https://github.com/TheLaucha/MENU_UNLP_BACK.git`
+2. Accede al directorio del proyecto: `cd MENU_UNLP_BACK`
+3. Instala las dependencias: `composer install`
+4. Inicia el servidor del backend: `php -S localhost:8080`
+
+## Configuracion del back-end
+
+1. Clona el siguiente repositorio que pertene al front-end: `git clone https://github.com/TheLaucha/MENU_UNLP_FRONT.git`
 2. Accede al directorio del proyecto: `cd MENU_UNLP_FRONT`
 3. Instala las dependencias: `npm install`
 
@@ -25,13 +32,6 @@ Para iniciar la aplicación frontend:
 ```bash
 npm start
 ```
-
-## Configuracion del back-end
-
-1. Clona el siguiente repositorio que pertene al back-end: `git clone https://github.com/TheLaucha/MENU_UNLP_BACK.git`
-2. Accede al directorio del proyecto: `cd MENU_UNLP_BACK`
-3. Instala las dependencias: `composer install`
-4. Inicia el servidor del backend: `php -S localhost:8080`
 
 ## Configuracion de la base de datos
 
